@@ -92,24 +92,15 @@
 
       <div class="botoes">
         <button id="sim" onclick="mostrarPix()">Sim!</button>
-        <button id="nao" onclick="ativarFuga()">Não!</button>
+        <button id="nao" onclick="fuja()">Não!</button>
       </div>
 
       <div id="pix">Chave Pix: 123.456.789-00</div>
 
       <script>
-        let fugindo = false;
-
         function mostrarPix() {
           var pixElement = document.getElementById("pix");
           pixElement.style.display = "block";
-        }
-
-        function ativarFuga() {
-          if (!fugindo) {
-            fugindo = true; // Marca que o botão já tentou fugir
-            document.getElementById("nao").onmouseover = fuja; // Ativa a função ao passar o mouse
-          }
         }
 
         function fuja() {
@@ -124,7 +115,7 @@
           var aleatorioX = Math.floor(Math.random() * maxX);
           var aleatorioY = Math.floor(Math.random() * maxY);
 
-          botaoNao.style.position = "absolute"; // Transforma o botão em posição absoluta para mover pela tela
+          botaoNao.style.position = "absolute";
           botaoNao.style.left = aleatorioX + "px";
           botaoNao.style.top = aleatorioY + "px";
         }
