@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edson</title>
+    <style>
+      body {
+        background-color: black;
+        margin: 0;
+        padding: 0;
+      }
+      .painel {
+        margin: auto;
+        background-color: yellow;
+        width: 90%; /* Ajustado para telas menores */
+        max-width: 500px;
+        height: 80vh; /* Altura ajustada para telas menores */
+        border-radius: 20px;
+        text-align: center;
+        padding-top: 50px;
+        position: relative;
+      }
+      #sim {
+        height: 40px;
+        width: 60px;
+        background-color: aqua;
+        border: 2px solid white;
+        border-radius: 10px;
+        color: black;
+        margin-left: -30px;
+      }
+      #nao {
+        position: absolute;
+        height: 40px;
+        width: 60px;
+        background-color: aqua;
+        border: 2px solid white;
+        border-radius: 10px;
+        color: black;
+        top: 100px;
+        left: 50px;
+      }
+      #pix {
+        display: none;
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: black;
+      }
+
+      /* Estilos para dispositivos móveis */
+      @media (max-width: 600px) {
+        .painel {
+          width: 95%; /* O painel ocupa quase toda a largura da tela */
+          height: 70vh; /* Altura ajustada para celulares */
+        }
+
+        #sim,
+        #nao {
+          height: 40px;
+          width: 60px;
+          font-size: 14px; /* Ajustando o tamanho do texto dos botões */
+        }
+
+        h1 {
+          font-size: 1.5em; /* Ajusta o tamanho da fonte do título */
+        }
+
+        h2 {
+          font-size: 1.2em; /* Ajusta o tamanho da fonte do subtítulo */
+        }
+
+        img {
+          width: 80%; /* Faz o GIF ocupar uma porcentagem da largura da tela */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="painel">
+      <h1>Hoje é o meu aniversário.</h1>
+      <h2>Deseja me fazer um pix?</h2>
+      <img
+        src="https://giffiles.alphacoders.com/221/221140.gif"
+        alt="gif do batman"
+      />
+      <button id="sim" onclick="mostrarPix()">Sim!</button>
+      <button onclick="fuja()" id="nao">Não!</button>
+
+      <div id="pix">Chave Pix: 123.456.789-00</div>
+
+      <script>
+        function mostrarPix() {
+          var pixElement = document.getElementById("pix");
+          pixElement.style.display = "block";
+        }
+
+        function fuja() {
+          var botaoNao = document.getElementById("nao");
+
+          var larguraJanela = window.innerWidth;
+          var alturaJanela = window.innerHeight;
+
+          var maxX = larguraJanela - botaoNao.offsetWidth;
+          var maxY = alturaJanela - botaoNao.offsetHeight;
+
+          var aleatorioX = Math.floor(Math.random() * maxX);
+          var aleatorioY = Math.floor(Math.random() * maxY);
+
+          botaoNao.style.left = aleatorioX + "px";
+          botaoNao.style.top = aleatorioY + "px";
+        }
+      </script>
+    </div>
+  </body>
+</html>
