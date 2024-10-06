@@ -12,7 +12,7 @@
       }
       .painel {
         margin: auto;
-        background-color: yellow;
+        background-color: #4a4947;
         width: 90%; /* Ajustado para telas menores */
         max-width: 500px;
         height: 80vh; /* Altura ajustada para telas menores */
@@ -21,25 +21,27 @@
         padding-top: 50px;
         position: relative;
       }
+      .botoes {
+        display: flex;
+        justify-content: center; /* Coloca os botões lado a lado no centro */
+        gap: 20px; /* Espaço entre os botões */
+      }
       #sim {
         height: 40px;
         width: 60px;
-        background-color: aqua;
-        border: 2px solid white;
+        background-color: #f4ce14;
+        border: 2px solid black;
         border-radius: 10px;
         color: black;
-        margin-left: -30px;
       }
       #nao {
-        position: absolute;
         height: 40px;
         width: 60px;
-        background-color: aqua;
-        border: 2px solid white;
+        background-color: #f4ce14;
+        border: 2px solid black;
         border-radius: 10px;
         color: black;
-        top: 100px;
-        left: 50px;
+        position: relative; /* Mantém o botão em sua posição inicial */
       }
       #pix {
         display: none;
@@ -52,27 +54,29 @@
       /* Estilos para dispositivos móveis */
       @media (max-width: 600px) {
         .painel {
-          width: 95%; /* O painel ocupa quase toda a largura da tela */
-          height: 70vh; /* Altura ajustada para celulares */
+          width: 95%;
+          height: 70vh;
         }
 
         #sim,
         #nao {
           height: 40px;
           width: 60px;
-          font-size: 14px; /* Ajustando o tamanho do texto dos botões */
+          font-size: 14px;
         }
 
         h1 {
-          font-size: 1.5em; /* Ajusta o tamanho da fonte do título */
+          font-size: 1.5em;
+          color: whitesmoke;
         }
 
         h2 {
-          font-size: 1.2em; /* Ajusta o tamanho da fonte do subtítulo */
+          font-size: 1.2em;
+          color: whitesmoke;
         }
 
         img {
-          width: 80%; /* Faz o GIF ocupar uma porcentagem da largura da tela */
+          width: 80%;
         }
       }
     </style>
@@ -85,15 +89,27 @@
         src="https://giffiles.alphacoders.com/221/221140.gif"
         alt="gif do batman"
       />
-      <button id="sim" onclick="mostrarPix()">Sim!</button>
-      <button onclick="fuja()" id="nao">Não!</button>
+
+      <div class="botoes">
+        <button id="sim" onclick="mostrarPix()">Sim!</button>
+        <button id="nao" onclick="ativarFuga()">Não!</button>
+      </div>
 
       <div id="pix">Chave Pix: 123.456.789-00</div>
 
       <script>
+        let fugindo = false;
+
         function mostrarPix() {
           var pixElement = document.getElementById("pix");
           pixElement.style.display = "block";
+        }
+
+        function ativarFuga() {
+          if (!fugindo) {
+            fugindo = true; // Marca que o botão já tentou fugir
+            document.getElementById("nao").onmouseover = fuja; // Ativa a função ao passar o mouse
+          }
         }
 
         function fuja() {
@@ -108,6 +124,7 @@
           var aleatorioX = Math.floor(Math.random() * maxX);
           var aleatorioY = Math.floor(Math.random() * maxY);
 
+          botaoNao.style.position = "absolute"; // Transforma o botão em posição absoluta para mover pela tela
           botaoNao.style.left = aleatorioX + "px";
           botaoNao.style.top = aleatorioY + "px";
         }
